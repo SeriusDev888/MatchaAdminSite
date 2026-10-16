@@ -1,0 +1,98 @@
+{
+  "brand": {
+    "name": "Golden Ray Matcha",
+    "mark": "G",
+    "tagline": "Direct Sourcing from Japan",
+    "logo": "/images/logo.jpg",
+    "footerDescription": "Premium Japanese matcha, sourced directly for our wholesale partners.",
+    "footerCopyright": "Golden Ray Matcha. All rights reserved."
+  },
+  "contact": {
+    "email": "wholesale@goldenray.com",
+    "phoneNumber": "+66 (0) 2-123-4567",
+    "lineOaId": "@goldenraymatcha",
+    "lineOaUrl": "https://lin.ee/ucrwpjP",
+    "availableTimeDescription": "Mon–Fri, 9:00–18:00",
+    "addressAsText": "123 Sukhumvit Road, Khlong Toei, Bangkok 10110, Thailand",
+    "mapLatitude": "13.7367174",
+    "mapLongitude": "100.5604494",
+    "mapLocationName": "Golden Ray Matcha"
+  },
+  "catalog": [
+    {
+      "id": "ceremonial",
+      "name": "Ceremonial Grade",
+      "title": "เกรดพิธีการ",
+      "category": "ceremonial",
+      "tag": "First Harvest",
+      "subtitle": "Single-origin matcha for traditional preparation",
+      "description": "First-harvest leaves, slowly stone-milled to preserve their delicate character. Brilliant emerald colour, rich umami and a sweet finish for traditional matcha preparation.",
+      "cardSubtitle": "Uji, Kyoto",
+      "cardDescription": "First-harvest matcha with a rich umami and a sweet finish.",
+      "color": "#e5b82a",
+      "image": "/images/product-ceremonial-grade.jpg",
+      "origin": "Uji, Kyoto",
+      "cultivar": "Samidori & Gokou",
+      "harvestSeason": "First Flush (Spring)",
+      "packagingDetails": [
+        "Traditional Usucha Blend — 30g / 100g",
+        "Single Estate Reserve — 20g / 40g"
+      ],
+      "active": true,
+      "ingredients": [],
+      "benefits": [
+        ["leaf", "First harvest"],
+        ["mountain", "Uji, Kyoto"]
+      ]
+    },
+    {
+      "id": "premium",
+      "name": "Premium Grade",
+      "title": "เกรดคาเฟ่",
+      "category": "premium",
+      "tag": "Café Optimized",
+      "subtitle": "A balanced foundation for matcha lattes",
+      "description": "A robust blend developed for cafés. The distinctive green tea character holds its own with dairy or plant-based milks, with vibrant colour and a smooth finish.",
+      "cardSubtitle": "Uji & Kagoshima",
+      "cardDescription": "Balanced matcha for lattes, café drinks and desserts.",
+      "color": "#2e7d32",
+      "image": "/images/product-premium-latte.jpg",
+      "origin": "Uji & Kagoshima",
+      "cultivar": "Yabukita Blend",
+      "harvestSeason": "First & Second Flush",
+      "packagingDetails": ["Latte-Grade Blend — 500g / 1kg", "Barista Bulk Pack — 5kg / 10kg"],
+      "active": true,
+      "ingredients": [],
+      "benefits": [
+        ["leaf", "Café optimized"],
+        ["drop", "For matcha lattes"]
+      ]
+    },
+    {
+      "id": "culinary",
+      "name": "Culinary Grade",
+      "title": "เกรดเบเกอรี่และอาหาร",
+      "category": "culinary",
+      "tag": "Versatile Usage",
+      "subtitle": "A bold matcha for baking and food production",
+      "description": "A full-bodied matcha for baking, ice cream and food production. Its bold green tea flavour and colour bring character to professional recipes.",
+      "cardSubtitle": "Kagoshima",
+      "cardDescription": "Bold matcha for baking, ice cream and food production.",
+      "color": "#00897b",
+      "image": "/images/product-culinary-bakery.jpg",
+      "origin": "Kagoshima",
+      "cultivar": "Mixed Estate",
+      "harvestSeason": "Summer / Autumn",
+      "packagingDetails": [
+        "Pastry & Baking Blend — 1kg / 5kg",
+        "Industrial Ingredient Grade — 20kg+"
+      ],
+      "active": true,
+      "ingredients": [],
+      "benefits": [
+        ["leaf", "For professional kitchens"],
+        ["flask", "Versatile usage"]
+      ]
+    }
+  ]
+}

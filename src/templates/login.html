@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="th">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="robots" content="noindex,nofollow" />
+    <title>เข้าสู่ระบบ · Golden Ray Matcha Studio</title>
+    <link rel="stylesheet" href="/login.css" />
+    <script src="/login.js" defer></script>
+  </head>
+  <body class="matcha">
+    <main class="login-shell">
+      <section class="brand-panel" aria-label="Golden Ray Matcha Website Studio">
+        <a class="wordmark" href="/site/"
+          ><span class="brand-mark" aria-hidden="true">G</span
+          ><span>GOLDEN RAY MATCHA<small>WEBSITE STUDIO</small></span></a
+        >
+        <div class="brand-story">
+          <span class="eyebrow">A SPACE FOR YOUR BRAND</span>
+          <h1>Every detail.<br />Your signature.</h1>
+          <p>ดูแลเรื่องราว สินค้า และทุกความประทับใจ<br />ของ Golden Ray Matcha ในพื้นที่เดียว</p>
+          <div class="brand-divider"></div>
+          <span class="brand-note">Thoughtfully sourced. Beautifully shared.</span>
+        </div>
+        <span class="panel-footer">GOLDEN RAY MATCHA · ADMINISTRATION</span>
+        <div class="brand-art" aria-hidden="true"><i></i><i></i><i></i></div>
+      </section>
+      <section class="form-panel">
+        <div class="login-card">
+          <span class="form-eyebrow">WELCOME TO YOUR STUDIO</span>
+          <h2 id="form-title">เข้าสู่ระบบ</h2>
+          <p id="form-description" class="description">เข้าสู่ระบบเพื่อจัดการเว็บไซต์ของคุณ</p>
+          <div id="status-message" class="notice" role="status" aria-live="polite">
+            กำลังตรวจสอบบัญชี…
+          </div>
+          <form id="login-form" hidden>
+            <div id="name-field" hidden>
+              <label for="display-name">ชื่อที่แสดง</label
+              ><input id="display-name" name="name" autocomplete="name" maxlength="100" />
+            </div>
+            <label for="email">อีเมล</label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              autocomplete="username"
+              placeholder="you@company.com"
+              maxlength="254"
+              required
+            />
+            <div class="password-label">
+              <label for="password">รหัสผ่าน</label
+              ><button
+                id="toggle-password"
+                type="button"
+                aria-controls="password"
+                aria-pressed="false"
+              >
+                แสดงรหัสผ่าน
+              </button>
+            </div>
+            <input
+              id="password"
+              name="password"
+              type="password"
+              autocomplete="current-password"
+              maxlength="256"
+              required
+            />
+            <p id="password-help" class="field-hint" hidden>ใช้รหัสผ่านอย่างน้อย 12 ตัวอักษร</p>
+            <div id="confirm-field" hidden>
+              <label for="confirm-password">ยืนยันรหัสผ่าน</label
+              ><input
+                id="confirm-password"
+                name="confirm-password"
+                type="password"
+                autocomplete="new-password"
+                maxlength="256"
+              />
+            </div>
+            <div id="token-field" hidden>
+              <label for="setup-token">รหัสตั้งค่าจากเจ้าของระบบ</label
+              ><input
+                id="setup-token"
+                name="setup-token"
+                type="password"
+                autocomplete="off"
+                maxlength="256"
+              />
+            </div>
+            <p id="form-error" class="form-error" role="alert" hidden></p>
+            <button id="submit" class="submit" type="submit">
+              <span id="submit-label">เข้าสู่ระบบ</span><span aria-hidden="true">↗</span>
+            </button>
+          </form>
+          <div id="google-section" hidden>
+            <div class="google-divider">หรือ</div>
+            <button id="google-login" type="button" disabled>
+              <span aria-hidden="true">G</span> ดำเนินการต่อด้วย Google
+            </button>
+            <p id="google-unavailable" class="field-hint">Google Login ยังไม่พร้อมใช้งาน</p>
+          </div>
+          <a id="auth-switch" class="auth-switch" href="/register" hidden
+            >ยังไม่มีบัญชี? สมัครเพื่อรออนุมัติ</a
+          >
+          <p id="session-note" class="session-note" hidden>
+            สำหรับผู้ดูแลเว็บไซต์ · เซสชันมีอายุ 8 ชั่วโมง
+          </p>
+          <a class="back-link" href="/site/"><span aria-hidden="true">←</span> กลับไปที่เว็บไซต์</a>
+        </div>
+        <footer class="form-footer">Golden Ray Matcha <span>Website Studio</span></footer>
+      </section>
+    </main>
+  </body>
+</html>

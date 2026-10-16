@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="th">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="robots" content="noindex,nofollow" />
+    <title>สถานะการเข้าใช้งาน · Golden Ray Matcha</title>
+    <link rel="stylesheet" href="/users.css" />
+    <link rel="stylesheet" href="/pending.css" />
+    <script src="/pending.js" defer></script>
+  </head>
+  <body>
+    <header class="users-header">
+      <a class="brand" href="/site/"
+        >G<span>Golden Ray Matcha<small>WEBSITE STUDIO</small></span></a
+      ><span id="current-role" class="role">MEMBER</span>
+      <nav><a href="/logs">ประวัติการใช้งาน</a><button id="logout">ออกจากระบบ</button></nav>
+    </header>
+    <main class="pending-main">
+      <section class="pending-card" aria-labelledby="pending-title">
+        <div class="waiting-icon" aria-hidden="true">◷</div>
+        <span class="eyebrow">YOUR ACCESS STATUS</span>
+        <h1 id="pending-title">กำลังตรวจสอบสถานะ…</h1>
+        <p id="pending-description" class="pending-description" role="status">กรุณารอสักครู่</p>
+        <div class="account-card">
+          <span>บัญชีที่ใช้ส่งคำขอ</span><strong id="member-name">—</strong
+          ><small id="member-email">—</small
+          ><span id="member-status" class="badge">กำลังตรวจสอบ</span>
+        </div>
+        <p id="pending-error" role="alert" hidden></p>
+        <div class="pending-actions">
+          <button id="request-access" class="primary" hidden>ขอเข้าใช้งานอีกครั้ง</button
+          ><button id="check-status">↻ ตรวจสอบสถานะ</button>
+        </div>
+        <p class="pending-note">เมื่อ superadmin อนุมัติ หน้านี้จะพาคุณเข้าสู่หลังบ้านอัตโนมัติ</p>
+      </section>
+      <p class="pending-footer">ส่งคำขอ → ผู้ดูแลตรวจสอบ → เข้าใช้งานตามสิทธิ์ที่ได้รับ</p>
+    </main>
+  </body>
+</html>

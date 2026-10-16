@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="th">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="robots" content="noindex,nofollow" />
+    <title>ผู้ใช้และสิทธิ์ · Golden Ray Matcha</title>
+    <link rel="stylesheet" href="/users.css" />
+    <script src="/users.js" defer></script>
+  </head>
+  <body>
+    <header class="users-header">
+      <a class="brand" href="/"
+        >G<span>Golden Ray Matcha<small>WEBSITE STUDIO</small></span></a
+      ><span class="role">SUPERADMIN</span>
+      <nav>
+        <a href="/logs">ประวัติการใช้งาน</a><a href="/">กลับไปแก้ไขเว็บไซต์ ↗</a
+        ><button id="logout">ออกจากระบบ</button>
+      </nav>
+    </header>
+    <main>
+      <div class="heading">
+        <div>
+          <span class="eyebrow">YOUR TEAM, YOUR CONTROL</span>
+          <h1>ผู้ใช้และสิทธิ์</h1>
+          <p>อนุมัติสมาชิกใหม่ และกำหนดสิทธิ์ให้ทีมดูแลเว็บไซต์</p>
+        </div>
+        <button id="reload">↻ โหลดล่าสุด</button>
+      </div>
+      <div class="stats">
+        <article>
+          <span>รออนุมัติ</span><strong id="pending-count">—</strong
+          ><small>สมาชิกที่รอคุณกดรับ</small>
+        </article>
+        <article>
+          <span>ใช้งานอยู่</span><strong id="active-count">—</strong
+          ><small>รวมบัญชี superadmin</small>
+        </article>
+        <article>
+          <span>ระงับการใช้งาน</span><strong id="suspended-count">—</strong
+          ><small>เข้าใช้งานไม่ได้จนกว่าจะเปิดอีกครั้ง</small>
+        </article>
+      </div>
+      <section class="team">
+        <div class="team-toolbar">
+          <div class="filters" role="group" aria-label="สถานะผู้ใช้">
+            <button data-filter="all" aria-pressed="true">ทั้งหมด</button
+            ><button data-filter="pending" aria-pressed="false">รออนุมัติ</button
+            ><button data-filter="active" aria-pressed="false">ใช้งานอยู่</button
+            ><button data-filter="suspended" aria-pressed="false">ระงับ</button>
+          </div>
+          <input
+            id="search"
+            type="search"
+            placeholder="ค้นหาชื่อหรืออีเมล"
+            aria-label="ค้นหาชื่อหรืออีเมล"
+          />
+        </div>
+        <p id="list-status" role="status">กำลังโหลดรายชื่อ…</p>
+        <div id="user-list"></div>
+      </section>
+      <p class="footnote">
+        สมาชิกใหม่ยังเข้าแก้ไขไม่ได้จนกว่าจะได้รับอนุมัติ สิทธิ์จัดการผู้ใช้สงวนไว้สำหรับ superadmin
+        เท่านั้น
+      </p>
+    </main>
+    <dialog id="user-dialog" aria-labelledby="dialog-title">
+      <form id="user-form">
+        <div class="dialog-heading">
+          <div>
+            <span class="eyebrow">MEMBER ACCESS</span>
+            <h2 id="dialog-title">จัดการสิทธิ์</h2>
+            <p id="dialog-email"></p>
+          </div>
+          <button id="close-dialog" type="button" aria-label="ปิด">×</button>
+        </div>
+        <p id="dialog-status"></p>
+        <fieldset id="permission-list"><legend>สิทธิ์ที่อนุญาต</legend></fieldset>
+        <p class="approval-note">
+          สิทธิ์เผยแพร่จะเผยแพร่ฉบับร่างรวมของทั้งทีม ควรให้เฉพาะผู้ตรวจทานเนื้อหา
+        </p>
+        <p id="dialog-error" role="alert" hidden></p>
+        <div class="dialog-actions">
+          <button id="delete-user" type="button" class="danger">ลบผู้ใช้</button
+          ><button id="toggle-status" type="button">ระงับการใช้งาน</button
+          ><button id="save-user" type="submit" class="primary">บันทึกสิทธิ์</button>
+        </div>
+      </form>
+    </dialog>
+    <div id="toast" role="status" hidden></div>
+  </body>
+</html>

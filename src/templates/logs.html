@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="th">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="robots" content="noindex,nofollow" />
+    <title>ประวัติการใช้งาน · Golden Ray Matcha</title>
+    <link rel="stylesheet" href="/users.css" />
+    <link rel="stylesheet" href="/logs.css" />
+    <script src="/logs.js" defer></script>
+  </head>
+  <body>
+    <header class="users-header">
+      <a class="brand" href="/"
+        >G<span>Golden Ray Matcha<small>WEBSITE STUDIO</small></span></a
+      >
+      <span id="log-role" class="role">MEMBER</span>
+      <nav>
+        <a href="/">แก้ไขเว็บไซต์ ↗</a><a id="manage-users" href="/users" hidden>ผู้ใช้และสิทธิ์</a
+        ><button id="logout">ออกจากระบบ</button>
+      </nav>
+    </header>
+    <main>
+      <div class="heading">
+        <div>
+          <span class="eyebrow">ACTIVITY HISTORY</span>
+          <h1>ประวัติการใช้งาน</h1>
+          <p>ดูว่าใครทำอะไร และเมื่อไร ในเว็บไซต์ของคุณ</p>
+        </div>
+        <button id="reload">↻ โหลดล่าสุด</button>
+      </div>
+      <div class="log-notice">
+        <span class="live-dot"></span>บันทึกอัตโนมัติเมื่อทำรายการสำเร็จ<span
+          >สมาชิกที่เข้าสู่ระบบดูได้ทุกยศ</span
+        >
+      </div>
+      <section class="team" aria-label="รายการประวัติ">
+        <form id="filters" class="log-filters">
+          <label
+            >ประเภทงาน<select id="category">
+              <option value="">ทั้งหมด</option>
+              <option value="auth">บัญชีและการเข้าสู่ระบบ</option>
+              <option value="content">เนื้อหาและการเผยแพร่</option>
+              <option value="media">สื่อและเอกสาร</option>
+              <option value="users">สมาชิกและสิทธิ์</option>
+            </select></label
+          >
+          <label class="search-field"
+            >ผู้ทำรายการ<input
+              id="search"
+              type="search"
+              maxlength="254"
+              placeholder="ค้นหาชื่อหรืออีเมล"
+          /></label>
+          <button type="submit" class="primary" id="apply">ค้นหา</button>
+        </form>
+        <div class="log-list-heading">
+          <h2>กิจกรรมล่าสุด</h2>
+          <p id="list-status" role="status">กำลังโหลดประวัติ…</p>
+        </div>
+        <p id="log-error" role="alert" hidden></p>
+        <table id="log-table" hidden>
+          <thead>
+            <tr>
+              <th scope="col">เวลา</th>
+              <th scope="col">ผู้ทำรายการ</th>
+              <th scope="col">กิจกรรม</th>
+              <th scope="col">รายละเอียด</th>
+            </tr>
+          </thead>
+          <tbody id="log-list"></tbody>
+        </table>
+        <div id="empty-state" class="log-empty" hidden>
+          <span>◷</span>
+          <h3>ยังไม่มีประวัติในรายการนี้</h3>
+          <p>รายการที่ทำสำเร็จหลังเปิดใช้ระบบประวัติจะแสดงที่นี่</p>
+        </div>
+        <div class="log-pagination"><button id="next-page" hidden>ดูรายการก่อนหน้า ↓</button></div>
+      </section>
+      <p class="footnote">
+        ประวัติแยกตามแบรนด์ และยังคงอยู่เมื่อสมาชิกถูกนำออกจากระบบ เวลาแสดงตามเขตเวลาของอุปกรณ์
+      </p>
+    </main>
+    <dialog id="log-dialog" aria-labelledby="dialog-title">
+      <div class="dialog-heading">
+        <div>
+          <span class="eyebrow">ACTIVITY DETAIL</span>
+          <h2 id="dialog-title">รายละเอียดกิจกรรม</h2>
+        </div>
+        <button id="close-dialog" aria-label="ปิด">×</button>
+      </div>
+      <dl id="log-detail"></dl>
+    </dialog>
+  </body>
+</html>

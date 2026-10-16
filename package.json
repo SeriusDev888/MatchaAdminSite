@@ -1,0 +1,38 @@
+{
+  "name": "matcha-adminsite",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "sync:public": "node scripts/sync-public.mjs",
+    "dev": "node scripts/dev.mjs",
+    "format": "prettier --write src worker scripts tests README.md package.json wrangler.json",
+    "test": "node --test tests/editor-api.test.mjs",
+    "test:unit": "node --test tests/auth.test.mjs tests/google.test.mjs tests/audit.test.mjs tests/users.test.mjs tests/supabase.test.mjs tests/editor-cms-validation.test.mjs tests/preview.test.mjs tests/legacy-content.test.mjs tests/legacy-cleanup.test.mjs",
+    "test:browser": "node --test tests/matcha-browser.cjs",
+    "test:published-site": "node scripts/test-published-site.mjs",
+    "test:dev-preview": "node scripts/check-dev-preview.mjs",
+    "db:generate": "drizzle-kit generate",
+    "db:local": "node scripts/db-local.mjs",
+    "test:login": "node --test tests/login.browser.mjs",
+    "test:vercel": "node --test tests/vercel.test.mjs",
+    "test:vercel:browser": "node --test tests/vercel.browser.mjs"
+  },
+  "dependencies": {
+    "drizzle-orm": "0.45.2",
+    "jose": "^6.2.12"
+  },
+  "devDependencies": {
+    "@electric-sql/pglite": "^0.5.10",
+    "drizzle-kit": "0.31.10",
+    "esbuild": "^0.27.4",
+    "lucide-static": "^1.52.0",
+    "playwright": "^1.63.0",
+    "prettier": "^3.9.9",
+    "qrcode": "^1.5.4",
+    "wrangler": "4.92.0"
+  },
+  "engines": {
+    "node": "24.x"
+  }
+}

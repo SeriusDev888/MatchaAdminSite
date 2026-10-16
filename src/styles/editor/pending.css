@@ -1,0 +1,98 @@
+.pending-main {
+  max-width: 740px;
+  padding-top: 65px;
+  text-align: center;
+}
+.pending-card {
+  padding: 42px 45px;
+  border: 1px solid var(--line);
+  background: white;
+  border-radius: 18px;
+}
+.waiting-icon {
+  display: grid;
+  place-items: center;
+  width: 76px;
+  height: 76px;
+  margin: 0 auto 24px;
+  border-radius: 50%;
+  background: #f6f0df;
+  color: #a28a45;
+  font:
+    42px Georgia,
+    serif;
+}
+.pending-card .eyebrow {
+  display: block;
+}
+.pending-card h1 {
+  font-size: 26px;
+  font-weight: 500;
+  margin: 15px 0;
+}
+.pending-description {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.9;
+  max-width: 460px;
+  margin: 0 auto 26px;
+}
+.account-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid var(--line);
+  background: #fafbf7;
+  padding: 25px;
+  border-radius: 10px;
+  overflow-wrap: anywhere;
+}
+.account-card > span:first-child {
+  color: var(--muted);
+  font-size: 11px;
+}
+.account-card strong {
+  font-size: 15px;
+  font-weight: 500;
+}
+.account-card small {
+  font-size: 12px;
+  color: var(--muted);
+}
+.pending-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 26px;
+}
+.pending-note,
+.pending-footer {
+  font-size: 11px;
+  line-height: 1.9;
+  color: var(--muted);
+  margin-top: 24px;
+}
+#pending-error {
+  font-size: 12px;
+  line-height: 1.8;
+  color: #a54e41;
+}
+.pending-footer {
+  margin-top: 28px;
+}
+@media (max-width: 600px) {
+  .pending-main {
+    padding: 28px 16px;
+  }
+  .pending-card {
+    padding: 30px 20px;
+  }
+  .pending-card h1 {
+    font-size: 23px;
+  }
+  .pending-actions {
+    flex-direction: column;
+  }
+}

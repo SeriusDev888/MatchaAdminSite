@@ -1,0 +1,7 @@
+dist
+node_modules
+public
+output
+tools/legacy
+package-lock.json
+.wrangler

@@ -1,0 +1,563 @@
+<!doctype html>
+<html lang="th">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Golden Ray Matcha · แก้ไขเว็บไซต์</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+Thai:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/editor.css" />
+    <link rel="stylesheet" href="/product-manager.css" />
+  </head>
+  <body>
+    <div id="gate" class="gate">
+      <div class="gate-mark">G</div>
+      <h1>Golden Ray Matcha Studio</h1>
+      <p id="gate-message">กำลังเปิดระบบจัดการ…</p>
+      <a href="/site/">กลับไปที่เว็บไซต์</a>
+    </div>
+    <div id="studio" hidden>
+      <header class="studio-top">
+        <a class="studio-brand" href="/site/" title="กลับไปเว็บไซต์"
+          ><b>G</b
+          ><span
+            ><strong id="studio-brand-name">Golden Ray Matcha</strong
+            ><small>Website Studio</small></span
+          ></a
+        >
+        <div class="page-control">
+          <span class="tiny">หน้าเว็บไซต์</span
+          ><select id="page-select" aria-label="เลือกหน้าเว็บไซต์"></select>
+        </div>
+        <div class="history-actions">
+          <button
+            id="undo"
+            title="ย้อนกลับ Ctrl+Z / ⌘Z"
+            aria-keyshortcuts="Control+Z Meta+Z"
+            disabled
+          >
+            ↶</button
+          ><button
+            id="redo"
+            title="ทำซ้ำ Ctrl+Y / Ctrl+Shift+Z / ⌘⇧Z"
+            aria-keyshortcuts="Control+Y Control+Shift+Z Meta+Shift+Z"
+            disabled
+          >
+            ↷
+          </button>
+        </div>
+        <div class="management-launch">
+          <button data-manager="products">จัดการสินค้า ↗</button
+          ><button data-manager="brand">จัดการแบรนด์ ↗</button
+          ><button data-manager="contact">จัดการ Contact</button>
+        </div>
+        <div class="top-spacer"></div>
+        <span id="save-state" role="status">กำลังโหลดฉบับร่าง</span
+        ><button id="reload" class="quiet">โหลดล่าสุด</button
+        ><button id="save" title="บันทึกฉบับร่าง Ctrl+S / ⌘S" aria-keyshortcuts="Control+S Meta+S">
+          บันทึกฉบับร่าง</button
+        ><button id="publish" class="primary">เผยแพร่</button>
+        <a id="users-link" href="/users" hidden>ผู้ใช้และสิทธิ์</a>
+        <a id="logs-link" href="/logs" hidden>ประวัติการใช้งาน</a>
+        <span id="current-role" class="tiny"></span>
+        <a id="reauth" href="/login" target="_blank" rel="noopener" hidden>เข้าสู่ระบบอีกครั้ง</a>
+        <button id="logout" class="quiet" title="ออกจากระบบ">ออกจากระบบ</button>
+      </header>
+      <div class="studio-body">
+        <aside class="layers">
+          <div class="aside-heading">
+            <div>
+              <span class="tiny">PAGE STRUCTURE</span>
+              <h2>ส่วนต่าง ๆ ในหน้านี้</h2>
+            </div>
+          </div>
+          <p class="hint">คลิกบนหน้าเพื่อเลือกข้อความ รูป หรือส่วนที่ต้องการแก้</p>
+          <div id="outline"></div>
+          <p id="order-status" class="sr-only" role="status" aria-live="polite"></p>
+          <details id="hidden-elements-panel" hidden open>
+            <summary>องค์ประกอบที่ซ่อน <span id="hidden-element-count"></span></summary>
+            <div id="hidden-elements-list"></div>
+          </details>
+          <details id="empty-texts-panel" hidden open>
+            <summary>ข้อความที่เว้นว่าง <span id="empty-text-count"></span></summary>
+            <p class="hint">เลือกเพื่อใส่ข้อความกลับมา ช่องเหล่านี้ไม่แสดงบนหน้าเว็บจริง</p>
+            <div id="empty-texts-list"></div>
+          </details>
+          <div class="layer-foot">
+            ลาก ⠿ ไปวางบนอีกส่วนเพื่อสลับลำดับ<br />หรือใช้ปุ่ม ↑ ↓ · หัวเว็บและท้ายเว็บล็อกไว้<br />การเปลี่ยนแปลงจะอยู่ในฉบับร่างจนกว่าจะกดเผยแพร่
+          </div>
+        </aside>
+        <section class="canvas">
+          <div class="canvas-toolbar">
+            <div class="viewport-buttons" role="group" aria-label="ขนาดหน้าตัวอย่าง">
+              <button data-width="full" class="active">จอใหญ่</button
+              ><button data-width="1920">Full HD</button><button data-width="2560">2K</button
+              ><button data-width="768">แท็บเล็ต</button><button data-width="390">มือถือ</button>
+            </div>
+            <span id="canvas-size"></span
+            ><label class="switch-label"
+              ><input id="interactive" type="checkbox" /> ทดลองใช้งาน</label
+            ><a id="open-live" href="/site/" target="_blank" rel="noopener">เปิดหน้าเว็บ ↗</a>
+          </div>
+          <div id="product-page-lock" hidden role="note">
+            หน้านี้แก้ไขข้อมูลผ่านจัดการสินค้า
+            <button type="button" data-manager="products">จัดการสินค้า</button>
+          </div>
+          <div id="frame-area">
+            <iframe id="preview" title="ตัวอย่างเว็บไซต์ คลิกองค์ประกอบเพื่อแก้ไข"></iframe>
+          </div>
+          <div class="canvas-bottom">
+            <span class="status-dot"></span>ลากรายการด้านซ้ายเพื่อสลับส่วน · Ctrl+Z ย้อนกลับ ·
+            ดับเบิลคลิกข้อความเพื่อพิมพ์
+          </div>
+        </section>
+        <aside class="inspector">
+          <div class="inspector-tabs" role="tablist">
+            <button data-tab="element" class="active">องค์ประกอบ</button
+            ><button data-tab="effects">ตกแต่ง</button><button data-tab="theme">ธีม</button
+            ><button data-tab="media">รูป</button><button data-tab="versions">ประวัติ</button>
+          </div>
+          <section id="tab-element" class="tab-panel">
+            <div id="no-selection">
+              <span class="select-mark">↖</span>
+              <h2>เลือกสิ่งที่อยากแก้</h2>
+              <p>คลิกข้อความ รูปภาพ หรือพื้นหลังในหน้าตัวอย่าง แล้วปรับค่าตรงนี้</p>
+              <p>เลือกจากรายการด้านซ้ายได้เช่นกัน</p>
+            </div>
+            <div id="element-fields" hidden>
+              <div class="selection-header">
+                <span id="element-tag" class="tag"></span>
+                <h2 id="element-name"></h2>
+                <button id="select-parent" class="quiet">เลือกส่วนที่ครอบอยู่ ↑</button>
+              </div>
+              <button id="toggle-element-visibility" class="visibility-toggle">
+                ซ่อนองค์ประกอบนี้
+              </button>
+              <p class="hint">ซ่อนไว้ก่อนได้ แล้วเลือกแสดงอีกครั้งจากรายการ “องค์ประกอบที่ซ่อน”</p>
+              <label class="field"
+                >ปรับสำหรับ<select id="style-scope">
+                  <option value="all">ทุกหน้าจอ</option>
+                  <option value="mobile">มือถือเท่านั้น (รูปแบบ)</option>
+                </select></label
+              >
+              <details open>
+                <summary>เนื้อหา</summary>
+                <label class="field" id="text-field"
+                  >ข้อความ<textarea id="text-value" rows="5"></textarea>
+                </label>
+                <div id="text-recovery" hidden>
+                  <div class="button-grid">
+                    <button id="restore-last-text" hidden>นำข้อความก่อนลบกลับมา</button
+                    ><button id="restore-original-text">คืนข้อความต้นฉบับ</button>
+                  </div>
+                  <p class="hint">
+                    เว้นข้อความว่างไว้ได้ แล้วกลับมาเติมภายหลังจากรายการ “ข้อความที่เว้นว่าง”
+                    ด้านซ้าย
+                  </p>
+                </div>
+                <label class="field" id="link-field"
+                  >ลิงก์ปลายทาง<input
+                    id="link-value"
+                    placeholder="#catalog หรือ https://…" /></label
+                ><label class="field"
+                  ><span id="image-label">รูป / ภาพพื้นหลัง</span
+                  ><input id="image-value" placeholder="วาง URL รูปภาพ หรือเลือกจากคลัง"
+                /></label>
+                <div class="button-grid">
+                  <button id="pick-image">เลือกจากคลัง</button
+                  ><button id="upload-image">อัปโหลดรูป</button>
+                </div>
+                <label class="field"
+                  >คำอธิบายรูป<input
+                    id="alt-value"
+                    placeholder="อธิบายภาพสำหรับผู้ใช้โปรแกรมอ่านหน้าจอ" /></label
+                ><button id="remove-image" class="quiet">เอาภาพพื้นหลังออก</button>
+              </details>
+              <details open>
+                <summary>ตัวอักษรและสี</summary>
+                <div class="field-grid">
+                  <label class="field"
+                    >สีข้อความ<input type="color" id="color" data-style="color" /></label
+                  ><label class="field"
+                    >สีพื้นหลัง<input
+                      type="color"
+                      id="backgroundColor"
+                      data-style="backgroundColor" /></label
+                  ><label class="field"
+                    >ขนาดตัวอักษร<input
+                      type="number"
+                      min="8"
+                      max="250"
+                      id="fontSize"
+                      data-style="fontSize"
+                      data-unit="px" /></label
+                  ><label class="field"
+                    >ความหนา<select id="fontWeight" data-style="fontWeight">
+                      <option>400</option>
+                      <option>500</option>
+                      <option>600</option>
+                      <option>700</option>
+                    </select></label
+                  >
+                </div>
+                <label class="field"
+                  >ฟอนต์<select id="fontFamily" data-style="fontFamily">
+                    <option value="">ใช้ค่าต้นฉบับ</option>
+                    <option value="'Noto Sans Thai',sans-serif">Noto Sans Thai</option>
+                    <option value="'DM Sans','Noto Sans Thai',sans-serif">DM Sans</option>
+                    <option value="Georgia,'Noto Sans Thai',serif">Georgia / Serif</option>
+                    <option value="'Caveat',cursive">Caveat / ลายมือ</option>
+                  </select></label
+                ><label class="field"
+                  >จัดแนว<select id="textAlign" data-style="textAlign">
+                    <option value="left">ชิดซ้าย</option>
+                    <option value="center">กึ่งกลาง</option>
+                    <option value="right">ชิดขวา</option>
+                  </select></label
+                >
+              </details>
+              <details>
+                <summary>ขนาดและระยะห่าง</summary>
+                <div class="field-grid">
+                  <label class="field"
+                    >ระยะด้านใน<input
+                      id="padding"
+                      data-style="padding"
+                      placeholder="24px หรือ 4vw" /></label
+                  ><label class="field"
+                    >ความโค้งมุม<input
+                      id="borderRadius"
+                      data-style="borderRadius"
+                      placeholder="16px" /></label
+                  ><label class="field"
+                    >ความสูงขั้นต่ำ<input
+                      id="minHeight"
+                      data-style="minHeight"
+                      placeholder="300px" /></label
+                  ><label class="field"
+                    >ช่องว่าง<input id="gap" data-style="gap" placeholder="20px" /></label
+                  ><label class="field"
+                    >ความกว้าง<input id="width" data-style="width" placeholder="100%" /></label
+                  ><label class="field"
+                    >ระยะบน<input id="marginTop" data-style="marginTop" placeholder="24px"
+                  /></label>
+                </div>
+                <label class="field"
+                  >เงา<select id="boxShadow" data-style="boxShadow">
+                    <option value="none">ไม่มี</option>
+                    <option value="0 8px 28px #153b251a">อ่อน</option>
+                    <option value="0 16px 45px #153b2533">ชัด</option>
+                  </select></label
+                >
+              </details>
+              <details>
+                <summary>การครอปและตำแหน่งรูป</summary>
+                <label class="field"
+                  >ขนาดภาพพื้นหลัง<select id="backgroundSize" data-style="backgroundSize">
+                    <option value="">ใช้ค่าต้นฉบับ</option>
+                    <option value="cover">เต็มพื้นที่ (Cover)</option>
+                    <option value="contain">เห็นทั้งภาพ (Contain)</option>
+                    <option value="100% auto">เต็มความกว้าง</option>
+                    <option value="auto 100%">เต็มความสูง</option>
+                  </select></label
+                ><label class="field"
+                  >ตำแหน่งภาพพื้นหลัง<input
+                    id="backgroundPosition"
+                    data-style="backgroundPosition"
+                    placeholder="center หรือ 70% 50%" /></label
+                ><label class="field"
+                  >การวางรูป<select id="objectFit" data-style="objectFit">
+                    <option value="cover">เต็มพื้นที่</option>
+                    <option value="contain">เห็นทั้งภาพ</option>
+                  </select></label
+                ><label class="field"
+                  >ตำแหน่งรูป<input
+                    id="objectPosition"
+                    data-style="objectPosition"
+                    placeholder="center หรือ 50% 30%"
+                /></label>
+              </details>
+              <p class="hint">
+                แอนิเมชันใช้รูปแบบต้นฉบับของเว็บไซต์ ปรับภาพตกแต่งได้ที่แท็บ “ตกแต่ง”
+              </p>
+              <button id="reset-element" class="quiet full">คืนค่าต้นฉบับขององค์ประกอบนี้</button>
+            </div>
+          </section>
+          <section id="tab-products" class="tab-panel" hidden>
+            <div class="panel-intro">
+              <span class="tiny">PRODUCT MANAGER</span>
+              <h2>จัดการสินค้า</h2>
+              <p>ข้อมูลและรูปสินค้าใช้ร่วมกันในหน้าสินค้า หน้าแรก และหน้าสินค้า</p>
+            </div>
+            <label class="field">เลือกสินค้า<select id="product-select"></select></label>
+            <div class="button-grid">
+              <button id="product-add">＋ เพิ่มสินค้า</button
+              ><button id="product-open">ดูหน้าสินค้า</button>
+            </div>
+            <img id="product-preview" class="admin-image-preview" alt="ภาพสินค้า" hidden />
+            <p id="product-original-note" class="hint">ใช้รูปสินค้าต้นฉบับ</p>
+            <label class="field"
+              >รูปสินค้า<input id="product-image" placeholder="https://…"
+            /></label>
+            <div class="button-grid">
+              <button id="product-pick">เลือกรูปสินค้า</button
+              ><button id="product-upload">อัปโหลดรูป</button>
+            </div>
+            <button id="product-reset-image" class="quiet full">ใช้รูปสินค้าต้นฉบับ</button
+            ><label class="field">ชื่อสินค้า<input id="product-name" maxlength="250" /></label
+            ><label class="field"
+              >ประเภท / ชื่อรอง<input id="product-title" maxlength="250" /></label
+            ><label class="field">คำโปรย<input id="product-subtitle" maxlength="250" /></label
+            ><label class="field">ป้ายสินค้า<input id="product-tag" maxlength="250" /></label
+            ><label class="field"
+              >ชื่อรองบนการ์ด<input id="product-cardSubtitle" maxlength="250" /></label
+            ><label class="field">รหัสสินค้า (SKU)<input id="product-sku" maxlength="250" /></label
+            ><label class="field"
+              >ราคา / หน่วย เช่น ฿990<input id="product-price" maxlength="250" /></label
+            ><label class="field">ลิงก์สั่งซื้อ<input id="product-buyUrl" maxlength="250" /></label
+            ><label class="field"
+              >รายละเอียดสินค้า<textarea
+                id="product-description"
+                rows="5"
+                maxlength="5000"
+              ></textarea></label
+            ><label class="field"
+              >คำอธิบายบนการ์ด<textarea
+                id="product-cardDescription"
+                rows="3"
+                maxlength="5000"
+              ></textarea>
+            </label>
+            <div class="field-grid">
+              <label class="field"
+                >หมวดหมู่<select id="product-category">
+                  <option value="ceremonial">Ceremonial · เกรดพิธีการ</option>
+                  <option value="premium">Premium · เกรดคาเฟ่</option>
+                  <option value="culinary">Culinary · เกรดเบเกอรี่</option>
+                </select></label
+              ><label class="field">สีประจำสินค้า<input type="color" id="product-color" /></label>
+            </div>
+            <label class="switch-label"
+              ><input type="checkbox" id="product-active" />แสดงในรายการสินค้า</label
+            ><label class="field"
+              >รายละเอียดแหล่งผลิต (หัวข้อ | รายละเอียด ต่อบรรทัด)<textarea
+                id="product-ingredients"
+                rows="5"
+              ></textarea>
+            </label>
+            <p class="hint">บันทึกฉบับร่างและเผยแพร่ด้วยปุ่มด้านบน</p>
+          </section>
+          <section id="tab-brand" class="tab-panel" hidden>
+            <div class="panel-intro">
+              <span class="tiny">BRAND IDENTITY</span>
+              <h2>โลโก้และชื่อแบรนด์</h2>
+              <p>แก้ไขส่วนหัวและส่วนท้ายของทุกหน้าจากที่เดียว</p>
+            </div>
+            <label class="field">ชื่อแบรนด์<input id="brand-name" maxlength="200" /></label
+            ><label class="field"
+              >ข้อความแนะนำแบรนด์<input id="brand-tagline" maxlength="200" /></label
+            ><label class="field">ตัวอักษรบนสัญลักษณ์<input id="brand-mark" maxlength="8" /></label
+            ><img id="brand-preview" class="admin-image-preview" alt="ตัวอย่างโลโก้" hidden /><label
+              class="field"
+              >รูปโลโก้<input id="brand-logo" placeholder="PNG หรือ WebP โปร่งใส"
+            /></label>
+            <div class="button-grid">
+              <button id="brand-pick">เลือกโลโก้</button
+              ><button id="brand-upload">อัปโหลดโลโก้</button>
+            </div>
+            <button id="brand-reset-logo" class="quiet full">ใช้สัญลักษณ์ตัวอักษร</button>
+          </section>
+          <section id="tab-effects" class="tab-panel" hidden>
+            <div class="panel-intro">
+              <span class="tiny">DECORATION & ICONS</span>
+              <h2>ภาพตกแต่งและสติกเกอร์</h2>
+              <p>เปลี่ยนหน้าตาเอฟเฟกต์ได้ โดยจังหวะการเคลื่อนไหวยังคงตามต้นฉบับ</p>
+            </div>
+            <h3>เอฟเฟกต์ของส่วนที่เลือก</h3>
+            <p id="effects-empty" class="hint">คลิกส่วนใดส่วนหนึ่งบนหน้าเพื่อเลือกเอฟเฟกต์</p>
+            <div id="effects-fields" hidden>
+              <p id="effect-target-name" class="hint"></p>
+              <label class="field"
+                >รูปแบบ<select id="effect-type">
+                  <option value="original">ตามต้นฉบับ</option>
+                  <option value="none">ไม่มีภาพตกแต่งลอย</option>
+                  <option value="sakura">กลีบซากุระ</option>
+                  <option value="leaves">ใบไม้</option>
+                  <option value="sparkles">ประกายดาว</option>
+                  <option value="snow">จุดแสง / หิมะ</option>
+                  <option value="custom">รูปที่อัปโหลดเอง</option>
+                </select></label
+              >
+              <div id="effect-custom" hidden>
+                <label class="field"
+                  >รูปเอฟเฟกต์<input id="effect-image" placeholder="URL รูปภาพ"
+                /></label>
+                <div class="button-grid">
+                  <button id="effect-pick">เลือกจากคลัง</button
+                  ><button id="effect-upload">อัปโหลดเอฟเฟกต์</button>
+                </div>
+                <p class="hint">รองรับ PNG / WebP โปร่งใส และ GIF สูงสุด 10 MB</p>
+              </div>
+              <div class="field-grid">
+                <label class="field"
+                  >สี<input type="color" id="effect-color" value="#f6aecb" /></label
+                ><label class="field"
+                  >ความทึบ<input
+                    id="effect-opacity"
+                    type="number"
+                    min="0"
+                    max="1"
+                    step=".1"
+                    value=".7" /></label
+                ><label class="field"
+                  >ขนาด (px)<input
+                    id="effect-size"
+                    type="number"
+                    min="8"
+                    max="100"
+                    value="20" /></label
+                ><label class="field"
+                  >จำนวน<input
+                    id="effect-density"
+                    type="number"
+                    min="4"
+                    max="24"
+                    step="1"
+                    value="10"
+                /></label>
+              </div>
+              <p class="hint">
+                ใช้กับภาพตกแต่งที่แยกเป็นชั้นบนเว็บไซต์
+                ส่วนดอกไม้ที่ติดอยู่ในรูปถ่ายต้องเปลี่ยนรูปถ่ายนั้น
+              </p>
+            </div>
+            <hr />
+            <h3>สติกเกอร์ / ไอคอน</h3>
+            <p id="sticker-empty" class="hint">
+              คลิกไอคอนบนหน้า เช่น โล่ หัวใจ หรือใบไม้ เพื่อเปลี่ยนแบบ
+            </p>
+            <div id="sticker-fields" hidden>
+              <div id="sticker-grid"></div>
+              <div class="field-grid">
+                <label class="field">สีไอคอน<input type="color" id="sticker-color" /></label
+                ><label class="field"
+                  >ขนาด (px)<input id="sticker-size" type="number" min="12" max="150" value="32"
+                /></label>
+              </div>
+              <button id="sticker-reset" class="quiet full">ใช้ไอคอนต้นฉบับ</button>
+            </div>
+          </section>
+          <section id="tab-theme" class="tab-panel" hidden>
+            <div class="panel-intro">
+              <span class="tiny">GLOBAL DESIGN</span>
+              <h2>ธีมของทั้งเว็บไซต์</h2>
+              <p>ปรับสีและฟอนต์ทุกหน้า แล้วแต่งแต่ละองค์ประกอบเพิ่มได้</p>
+            </div>
+            <div class="theme-presets">
+              <button data-theme="original">ต้นฉบับ</button
+              ><button data-theme="garden">สวนญี่ปุ่น</button
+              ><button data-theme="rose">ชมพูอ่อน</button
+              ><button data-theme="night">กลางคืน</button>
+            </div>
+            <div class="field-grid">
+              <label class="field"
+                >สีพื้นหลัง<input
+                  type="color"
+                  data-theme-color="background"
+                  value="#fffaf6" /></label
+              ><label class="field"
+                >สีข้อความ<input type="color" data-theme-color="text" value="#152d4e" /></label
+              ><label class="field"
+                >สีหลัก<input type="color" data-theme-color="accent" value="#15533f" /></label
+              ><label class="field"
+                >สีการ์ด<input type="color" data-theme-color="surface" value="#fffdfb"
+              /></label>
+            </div>
+            <label class="field"
+              >ฟอนต์ทั้งเว็บไซต์<select id="theme-font">
+                <option value="original">ต้นฉบับ</option>
+                <option value="thai">Noto Sans Thai</option>
+                <option value="sans">DM Sans</option>
+                <option value="serif">Georgia</option>
+              </select></label
+            >
+          </section>
+          <section id="tab-contact" class="tab-panel" hidden>
+            <div
+              id="contact-details"
+              contenteditable="plaintext-only"
+              role="textbox"
+              aria-multiline="true"
+              aria-label="รายละเอียด Contact"
+            ></div>
+          </section>
+          <section id="tab-media" class="tab-panel" hidden>
+            <div class="panel-intro">
+              <span class="tiny">MEDIA LIBRARY</span>
+              <h2>คลังรูปภาพ</h2>
+              <p>PNG, JPG, WebP หรือ GIF ไม่เกิน 10 MB</p>
+            </div>
+            <button id="library-upload" class="primary full">＋ อัปโหลดรูปภาพ</button
+            ><input
+              id="file-input"
+              type="file"
+              accept="image/png,image/jpeg,image/webp,image/gif"
+              hidden
+            />
+            <p id="media-hint" class="hint">เลือกองค์ประกอบในหน้า แล้วคลิกรูปเพื่อใช้งาน</p>
+            <div id="media-library"></div>
+          </section>
+          <section id="tab-versions" class="tab-panel" hidden>
+            <div class="panel-intro">
+              <span class="tiny">PUBLISHED HISTORY</span>
+              <h2>เวอร์ชันที่เผยแพร่</h2>
+              <p>คืนเวอร์ชันเก่ามาเป็นฉบับร่างก่อน ตรวจดูแล้วจึงเผยแพร่ได้</p>
+            </div>
+            <button id="refresh-versions" class="full">โหลดประวัติ</button>
+            <div id="versions-list"></div>
+          </section>
+        </aside>
+      </div>
+    </div>
+    <div id="toast" role="status" hidden></div>
+    <dialog id="publish-dialog">
+      <h2>เผยแพร่การเปลี่ยนแปลง?</h2>
+      <p>
+        ผู้เข้าชมจะเห็นฉบับนี้แทนเวอร์ชันปัจจุบัน
+        คุณสามารถเรียกคืนเวอร์ชันที่เผยแพร่แล้วจากประวัติได้
+      </p>
+      <div class="dialog-actions">
+        <button id="cancel-publish">กลับไปตรวจ</button
+        ><button id="confirm-publish" class="primary">เผยแพร่ตอนนี้</button>
+      </div>
+    </dialog>
+    <section id="management-screen" hidden aria-label="จัดการข้อมูลเว็บไซต์">
+      <div class="management-heading">
+        <button id="manager-back">← กลับไปแก้หน้าเว็บ</button>
+        <div>
+          <span class="tiny">WEBSITE MANAGEMENT</span>
+          <h1 id="manager-title">จัดการสินค้า</h1>
+          <p>แก้ข้อมูลที่ใช้ร่วมกันทั้งเว็บไซต์ บันทึกและเผยแพร่ด้วยปุ่มด้านบน</p>
+        </div>
+        <nav aria-label="หน้าจัดการ">
+          <button data-manager="products">สินค้า</button><button data-manager="brand">แบรนด์</button
+          ><button data-manager="contact">Contact</button>
+        </nav>
+      </div>
+      <div id="management-panels"></div>
+    </section>
+    <script src="/site-config.js"></script>
+    <script src="/sticker-library.js"></script>
+    <script src="/product-details.js"></script>
+    <script src="/upload.js"></script>
+    <script src="/editor.js"></script>
+    <script src="/cms-admin.js"></script>
+    <script src="/product-manager.js"></script>
+    <script src="/contact-manager.js"></script>
+    <script src="/brand-manager.js"></script>
+    <script src="/effects-manager.js"></script>
+  </body>
+</html>

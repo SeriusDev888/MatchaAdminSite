@@ -1,0 +1,259 @@
+.log-notice {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid var(--line);
+  background: #eef2e8;
+  border-radius: 10px;
+  padding: 16px 20px;
+  margin: 0 0 24px;
+  font-size: 12px;
+  line-height: 1.8;
+}
+.log-notice > span:last-child {
+  margin-left: auto;
+  color: var(--muted);
+  font-size: 11px;
+}
+.live-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #628a58;
+  flex-shrink: 0;
+}
+.log-filters {
+  display: flex;
+  align-items: end;
+  gap: 14px;
+  padding: 22px;
+  border-bottom: 1px solid var(--line);
+}
+.log-filters label {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  font-size: 11px;
+  color: var(--muted);
+}
+.log-filters select,
+.log-filters input {
+  font: inherit;
+  font-size: 12px;
+  color: var(--accent);
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 12px;
+  min-height: 42px;
+  max-width: 100%;
+  outline-offset: 3px;
+}
+.search-field {
+  flex: 1;
+}
+.log-list-heading {
+  padding: 22px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+.log-list-heading h2 {
+  font-size: 14px;
+  font-weight: 500;
+  margin: 0;
+}
+#list-status {
+  padding: 0;
+  margin: 0;
+  font-size: 11px;
+  color: var(--muted);
+}
+#log-error {
+  margin: 0 22px 24px;
+  padding: 16px;
+  background: #fff4e6;
+  color: #855321;
+  border-radius: 8px;
+  font-size: 12px;
+  line-height: 1.8;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  text-align: left;
+  font-size: 12px;
+}
+th {
+  padding: 12px 22px;
+  color: var(--muted);
+  background: #f8f9f5;
+  font-size: 10px;
+  font-weight: 500;
+}
+th:first-child {
+  width: 21%;
+}
+th:nth-child(2) {
+  width: 30%;
+}
+th:nth-child(3) {
+  width: 30%;
+}
+td {
+  border-top: 1px solid var(--line);
+  padding: 19px 22px;
+  vertical-align: middle;
+  overflow-wrap: anywhere;
+  line-height: 1.8;
+}
+td small {
+  display: block;
+  color: var(--muted);
+  font-size: 10px;
+  margin-top: 3px;
+}
+.log-actor {
+  font-weight: 500;
+  display: block;
+}
+.log-action {
+  font-size: 10px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  background: #eff3e9;
+  color: #4c6742;
+  display: inline-block;
+}
+.log-action.auth {
+  background: #edf1f5;
+  color: #4c657d;
+}
+.log-action.users {
+  background: #f5eee0;
+  color: #8a6a2f;
+}
+.log-action.media {
+  background: #f2edf6;
+  color: #795b8e;
+}
+.detail-button {
+  padding: 6px 12px;
+  font-size: 11px;
+  min-height: 34px;
+}
+.log-empty {
+  padding: 36px 20px 60px;
+  text-align: center;
+  color: var(--muted);
+}
+.log-empty > span {
+  font-size: 36px;
+  color: #90a184;
+}
+.log-empty h3 {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--accent);
+}
+.log-empty p {
+  font-size: 11px;
+  line-height: 1.8;
+}
+.log-pagination {
+  display: flex;
+  justify-content: center;
+  padding: 22px;
+}
+#log-detail {
+  margin: 12px 0 0;
+  display: grid;
+  grid-template-columns: 130px minmax(0, 1fr);
+  font-size: 12px;
+  line-height: 1.9;
+}
+#log-detail dt,
+#log-detail dd {
+  margin: 0;
+  padding: 12px 0;
+  border-top: 1px solid var(--line);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+#log-detail dt {
+  color: var(--muted);
+  padding-right: 14px;
+}
+@media (max-width: 700px) {
+  .log-notice {
+    flex-wrap: wrap;
+    font-size: 11px;
+  }
+  .log-notice > span:last-child {
+    width: 100%;
+    margin: 0 0 0 17px;
+  }
+  .log-filters {
+    padding: 18px;
+    flex-wrap: wrap;
+    align-items: stretch;
+  }
+  .log-filters label {
+    width: 100%;
+  }
+  .log-filters button {
+    width: 100%;
+  }
+  .log-list-heading {
+    padding: 18px;
+  }
+  thead {
+    display: none;
+  }
+  table,
+  tbody {
+    display: block;
+  }
+  tr {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    padding: 18px;
+    border-top: 1px solid var(--line);
+    gap: 12px;
+  }
+  td {
+    display: block;
+    padding: 0;
+    border: 0;
+  }
+  td:nth-child(1) {
+    order: 3;
+    font-size: 10px;
+    color: var(--muted);
+  }
+  td:nth-child(2) {
+    order: 1;
+    grid-column: 1/-1;
+  }
+  td:nth-child(3) {
+    order: 2;
+    grid-column: 1/-1;
+  }
+  td:nth-child(4) {
+    order: 4;
+    text-align: right;
+  }
+  td:first-child small {
+    display: inline;
+    margin-left: 6px;
+  }
+  #log-detail {
+    grid-template-columns: 95px minmax(0, 1fr);
+    font-size: 11px;
+  }
+  nav {
+    gap: 14px;
+  }
+}
