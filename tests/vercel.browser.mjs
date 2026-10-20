@@ -175,6 +175,20 @@ test(
     await heading.click();
     await page.locator('#text-value').fill('Vercel browser verification');
     await heading.filter({ hasText: 'Vercel browser verification' }).waitFor();
+    await page.locator('#clear-bg-color').click();
+    assert.equal(await heading.evaluate(el => el.style.backgroundColor), 'transparent');
+    await frame.locator('main svg[data-ve-id]').first().click();
+    await page.locator('[data-tab="effects"]').click();
+    assert.equal(await page.locator('#sticker-grid button:visible').count(), 24);
+    const first = await page.locator('#sticker-grid button:visible').first().getAttribute('data-sticker');
+    await page.locator('#sticker-next').click();
+    assert.notEqual(await page.locator('#sticker-grid button:visible').first().getAttribute('data-sticker'), first);
+    await page.locator('#sticker-prev').click();
+    assert.equal(await page.locator('#sticker-grid button:visible').first().getAttribute('data-sticker'), first);
+    await page.locator('[data-manager="contact"]').first().click();
+    await page.locator('#contact-email').fill('matcha-browser@example.test');
+    await page.locator('#contact-email').dispatchEvent('change');
+    await page.locator('#manager-back').click();
     await page.locator('#save').click();
     await page.waitForFunction(() =>
       document.querySelector('#save-state').textContent.includes('บันทึกฉบับร่างแล้ว'),

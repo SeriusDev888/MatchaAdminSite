@@ -1140,3 +1140,107 @@ dialog p {
 #product-page-lock button {
   margin-left: 12px;
 }
+
+.transparent-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+  min-height: 28px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  border: 1px solid #d4ded3;
+  background: #f7faf5;
+  color: #314a3d;
+  font-size: 11px;
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: 4px;
+  transition:
+    background 0.15s,
+    border-color 0.15s,
+    box-shadow 0.15s,
+    color 0.15s,
+    transform 0.1s;
+}
+.transparent-btn:hover {
+  background: #edf3ea;
+  border-color: #abc1ab;
+  color: #155844;
+  box-shadow: 0 2px 6px #15584414;
+}
+.transparent-btn:active {
+  transform: scale(0.98);
+}
+.transparent-icon {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  border: 1px solid #aebfaa;
+  position: relative;
+  background-color: #ffffff;
+  background-image:
+    linear-gradient(45deg, #d3dcd1 25%, transparent 25%),
+    linear-gradient(-45deg, #d3dcd1 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #d3dcd1 75%),
+    linear-gradient(-45deg, transparent 75%, #d3dcd1 75%);
+  background-size: 6px 6px;
+  background-position:
+    0 0,
+    0 3px,
+    3px -3px,
+    -3px 0;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+.transparent-icon::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: -2px;
+  right: -2px;
+  height: 1.5px;
+  background: #d94343;
+  transform: translateY(-50%) rotate(-45deg);
+}
+
+.sticker-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 14px 0 16px;
+  padding: 8px 12px;
+  background: #f5f8f3;
+  border-radius: 8px;
+  border: 1px solid #dbe4d9;
+}
+.sticker-pagination button {
+  font-size: 11px;
+  font-weight: 500;
+  padding: 5px 10px;
+  min-height: 28px;
+  border-radius: 6px;
+  border: 1px solid #c9d8c6;
+  background: #fff;
+  color: #1e3b2e;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.sticker-pagination button:hover:not(:disabled) {
+  background: #eaf1e8;
+  border-color: #9cb898;
+  color: #124b37;
+  box-shadow: 0 1px 4px #124b3714;
+}
+.sticker-pagination button:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  background: #fcfdfb;
+}
+.sticker-pagination span {
+  font-weight: 600;
+  font-size: 12px;
+  color: #2c4436;
+}

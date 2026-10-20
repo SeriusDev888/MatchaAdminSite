@@ -300,7 +300,7 @@
   }
   $('manager-back').onclick = () => {
     closeManager();
-    document.querySelector('[data-manager="products"]').focus();
+    document.querySelector('[data-manager="products"]')?.focus();
   };
   all('[data-manager]').forEach((b) => (b.onclick = () => tab(b.dataset.manager)));
   all('[data-tab]').forEach((b) => (b.onclick = () => tab(b.dataset.tab)));
@@ -339,7 +339,11 @@
       ...p.styles,
       ...($('style-scope').value === 'mobile' ? p.mobileStyles : {}),
     };
-    all('[data-style]').forEach((input) => {
+    $('clear-bg-color').onclick = () => {
+    patchStyle('backgroundColor', 'transparent');
+    $('backgroundColor').value = '#ffffff';
+  };
+  all('[data-style]').forEach((input) => {
       let v = styles[input.dataset.style] || '';
       if (input.type === 'color') v = hex(v);
       if (input.dataset.unit) v = parseFloat(v) || '';

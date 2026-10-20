@@ -73,9 +73,17 @@
     }
     $('effect-custom').hidden = $('effect-type').value !== 'custom';
     if (s?.isSticker) {
+      const activeSticker = s.patch?.sticker;
       document
         .querySelectorAll('[data-sticker]')
-        .forEach((b) => b.classList.toggle('active', b.dataset.sticker === s.patch?.sticker));
+        .forEach((b) => b.classList.toggle('active', b.dataset.sticker === activeSticker));
+      if (activeSticker) {
+        const index = stickerButtons.findIndex((b) => b.dataset.sticker === activeSticker);
+        if (index !== -1) {
+          const targetPage = Math.floor(index / PAGE_SIZE) + 1;
+          if (targetPage !== currentPage) renderPage(targetPage);
+        }
+      }
       $('sticker-color').value = rgbHex(s.styles.color);
       $('sticker-size').value = parseFloat(s.styles.width) || 32;
     }
@@ -114,6 +122,8 @@
         syncSelection();
       });
     };
+  const PAGE_SIZE = 24;
+  const stickerButtons = [];
   for (const [name, label] of Object.entries(names)) {
     const b = document.createElement('button');
     b.dataset.sticker = name;
@@ -122,7 +132,33 @@
     b.innerHTML = icon(name) + '<span>' + label + '</span>';
     b.onclick = () => api.patch({ sticker: name });
     $('sticker-grid').append(b);
+    stickerButtons.push(b);
   }
+  let currentPage = 1;
+  const totalPages = Math.ceil(stickerButtons.length / PAGE_SIZE) || 1;
+
+  function renderPage(page) {
+    currentPage = Math.max(1, Math.min(page, totalPages));
+    const start = (currentPage - 1) * PAGE_SIZE;
+    const end = start + PAGE_SIZE;
+    stickerButtons.forEach((b, i) => {
+      b.hidden = i < start || i >= end;
+    });
+    if ($('sticker-page-info')) {
+      $('sticker-page-info').textContent = `หน้า ${currentPage} / ${totalPages}`;
+    }
+    if ($('sticker-prev')) {
+      $('sticker-prev').disabled = currentPage <= 1;
+    }
+    if ($('sticker-next')) {
+      $('sticker-next').disabled = currentPage >= totalPages;
+    }
+  }
+
+  if ($('sticker-prev')) $('sticker-prev').onclick = () => renderPage(currentPage - 1);
+  if ($('sticker-next')) $('sticker-next').onclick = () => renderPage(currentPage + 1);
+  renderPage(1);
+
   $('sticker-reset').onclick = () => api.patch({ sticker: '' });
   $('sticker-color').onchange = () => api.patchStyle('color', $('sticker-color').value);
   $('sticker-size').onchange = () => {
